@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffo</title>
+    <script src="https://kit.fontawesome.com/0970b23f2e.js" crossorigin="anonymous"></script>   
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600&display=swap");
+
+    :root {
+  --header-height: 3.5rem;
+  --border-section: 56px 56px 0 0;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(12, 32%, 22%);
+  --first-color-alt: hsl(12, 42%, 12%);
+  --first-color-light: hsl(12, 24%, 32%);
+  --second-color: hsl(39, 62%, 65%);
+  --title-color: hsl(12, 12%, 16%);
+  --text-color: hsl(12, 12%, 32%);
+  --text-color-light: hsl(12, 8%, 48%);
+  --white-color: #fff;
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --second-font: "Pacifico", cursive;
+  --biggest-font-size: 2.75rem;
+  --big-font-size: 1.75rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --biggest-font-size: 4.5rem;
+    --big-font-size: 3rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+
+    :root {
+        /* colors */
+    --orange: #ff7800;
+    --black: #130f40;
+    --light-color: #5a5758;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+    --border: .2rem solid rgba(0, 0, 0, .1);
+    --outline: .1rem solid rgba(0, 0, 0, .1);
+    --outline-hover: .2rem solid var(--black);
+    --coffee: #6e473b;
+    --brown: #a78d78;
+    --yellow: hsl(39, 62%, 65%);
+
+    /* fonts */
+    --body-font: "Poppins", sans-serif;
+    --second-font: "Pacifico", cursive;
+    --normal-font-size: 1rem;
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+  body{
+        padding: 0;
+        margin: 10px;
+        font-family: var(--body-font);
+        font-size: var(--normal-font-size);
+        color: #fff;
+        back  ground-color: var(--coffee);
+        align-content: center;
+        /* background: url(coffee_image.png); */
+        
+    }
+
+    
+    .header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 14%; 
+    backdrop-filter: blur(20px);
+    background: transparent;
+    /* background: var(--coffee); */
+    box-shadow: var(--box-shadow);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    .logo{
+        font-size: 2.5rem;
+        font-family: var(--second-font);
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    /* .logo:hover{
+        color: var(--coffee);
+    } */
+
+    .logo-img{
+        width: 50px;
+}
+
+    .navigation{
+        margin-top: 2px;
+        padding: 5px;
+        justify-content: space-between;
+        display: flex; 
+        gap: 1.2rem; 
+    }
+
+    .navigation a{
+        text-decoration: none;
+        color: #fff;
+        margin: 0 1rem;
+        padding: 0.5rem; 
+        font-size: 1.1rem;
+        font-family: var(--second-font);
+    }
+
+    .navigation a:hover{
+        color: var(--yellow);
+    }
+
+
+    /* .navigation a::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: var(--coffee);
+        left: 0;
+        bottom: -1px;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: .5s;
+    }
+    
+    .navigation a:hover::after{
+        transform: scaleX(1);
+        transform-origin: left;
+    } */
+
+    .grab{
+        display: inline-flex;
+        align-items: center;
+        column-gap: .5rem;
+        background-color: var(--second-color);
+        padding: 0.5rem 1.3rem;
+        border-radius: 4rem;
+        border: none;
+        color: var(--title-color);
+        font-weight: var(--font-medium);
+        box-shadow: 0 8px 32px hsla(39, 62%, 65%, .25);
+        transition: box-shadow .3s;
+    }
+    .grab:hover{
+        box-shadow: 0 8px 48px hsla(39, 62%, 65%, .3);
+    }
+
+    .now{
+        font-family: var(--second-font);
+        color: var(--title-color);
+        font-weight: var(--font-medium);
+        font-size: 1.1rem;
+    }
+
+    section{
+        background-color: ;
+        border-radius: var(--border-section);
+    }
+
+    .home{
+        padding: 20px 35px;
+        
+    }
+
+    .coffee{
+        width: 180px;
+    }
+
+
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"><h2 class="logo"><img src="[CITYPNG.COM]Java Coffee Cup White Logo HD PNG - 2000x2000.png" alt="" class="logo-img">Coffo</h2></a>
+        <nav class="navigation" id="nav">
+            <a href="#Home" class="active"><!--<i class="fas fa-home"></i>--> Home</a>
+            <a href="#about"><!--<i class="fas fa-info-circle"></i> -->About</a>
+            <a href="#Contact"><!--<i class="fas fa-envelope"></i> -->Contact</a>
+            <a href="#gallery"><!--<i class="fas fa-images"></i> -->Gallery</a>
+            <a href="#menu"><!--<i class="fas fa-coffee"></i> -->Menu</a>
+             <a href="#blog"><!--<i class="fas fa-blog"></i>--> Blog</a>
+        </nav>
+        <button class="grab"><a href="#" class="now">Grab Now <i class="fa-solid fa-cart-shopping"></i></a></button>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home">
+        <div class="container">
+            <img src="—Pngtree—spilled coffee_15461506.png" alt="" class="coffee">
+            <div class="home-text">
+                <h3>Exceptional Quality</h3>
+                <p>It's time for a good coffee</p>
+                <button class="grab">View Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2 class="title">About Us</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta mollitia nesciunt est laboriosam vitae. Ullam ea placeat corporis necessitatibus quos numquam vitae facilis distinctio, repellat eveniet error, reprehenderit dolores soluta.</p>
+            </div>
+            <img src="about-coffee.jpg" alt="About Us Image" class="about-image">
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2 class="title">Our Menu</h2>
+        <div class="slider">
+            <div class="slide">
+                <img src="img/" alt="Americano">
+                <h4>Americano</h4>
+                <p>$8</p>
+                <button>Shop Now</button>
+            </div>
+            <div class="slide">
+                <img src="img/" alt="Latte">
+                <h4>Latte</h4>
+                <p>$10</p>
+                <button>Shop Now</button>
+            </div>
+            <div class="slide">
+                <img src="img/" alt="Cappuccino">
+                <h4>Cappuccino</h4>
+                <p>$9</p>
+                <button>Shop Now</button>
+            </div>
+        </div>
+    </section>
+
+<!-- menu ends  -->
+
+
+
+<!-- contact begins  -->
+
+<section id="Contact">
+    <h2 class="title">Contact us</h2>
+    <form action="post">
+        <label for="">Name</label> <br>
+        <input type="text" name="name" required/> <br>
+
+        <label for="">Email</label> <br>
+        <input type="email" name="Email" required/> <br>
+
+        <label for="">Subject</label> <br>
+        <input type="text" name="subject" required/> <br>
+
+        <label for="">Messages</label> <br>
+        <textarea name="message" id=""></textarea>
+
+    </form>
+</section>
+
+<!-- contact ends -->
+
+
+
+<!-- gallery begins -->
+ <section id="gallery">
+
+<h2 class="title">Gallery</h2>
+<h3>Some of our coffee photos</h3>
+
+<div class="image">
+    <img src="img/01-Blog-Coffee-L.jpg" alt="">
+</div>
+
+<div class="image">
+    <img src="img/petr-sevcovic-qE1jxYXiwOA-unsplash.jpg" alt="">
+</div>
+<div class="image">
+    <img src="img/stock-photo-capuchino-or-latte-coffee-in-a-white-cup-with-heart-shaped-foam.jpg" alt="">
+</div>
+<div class="image">
+    <img src="img/vecteezy_a-cup-of-coffee-on-a-white-table_46860873.jpeg" alt="">
+</div>
+<div class="image">
+    <img src="img/stock-photo-close-portrait-young-woman-closed-eyes-drinking-coffee-cafe.jpg" alt="">
+</div>
+<div class="image">
+    <img src="img/vecteezy_ai-generated-design-of-a-modern-cafe-in-gray-tones_37337629.jpeg" alt="">
+</div>
+</section>
+
+<!-- gallery ends -->
+
+
+
+<!-- blog begins -->
+
+<section id="blog">
+<h2 class="title">Our Blogs</h2>
+<div class="blog">
+    <img src="img/stock-photo-close-portrait-young-woman-closed-eyes-drinking-coffee-cafe.jpg" alt="">
+    <div class="half">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <button>Read more</button>
+    </div>
+</div>
+<div class="blog">
+    <img src="img/stock-photo-close-portrait-young-woman-closed-eyes-drinking-coffee-cafe.jpg" alt="">
+    <div class="half">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <button>Read more</button>
+    </div>
+</div>
+<div class="blog">
+    <img src="img/stock-photo-close-portrait-young-woman-closed-eyes-drinking-coffee-cafe.jpg" alt="">
+    <div class="half">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <button>Read more</button>
+    </div>
+</div>
+</section>
+
+<!-- blog ends -->
+
+
+
+<!-- footer begins -->
+<section class="footer">
+
+<div class="icons">
+
+</div>
+
+<div class="social">
+
+</div>
+
+<p>Subscribe to get updates</p>
+<label for="">Email</label>
+<input type="email" required/><br>
+<button>Submit</button>
+<p>Created By <span>Joseph</span> | All Rights Reserved</p>
+
+
+</section>
+
+<!-- footer ends -->
+
+<script>
+</script>
+
+</body>
+</html>

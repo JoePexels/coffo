@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Coffo</title>
+    <style>
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #4e3b31; /* Chocolate brown */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+.gallery {
+    padding: 20px;
+    flex: 1; /* Allow the gallery to expand and take available space */
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.slider-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.gallery-row {
+    display: flex; /* Makes children of gallery-row flex items */
+}
+
+.gallery-item {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    margin: 10px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 300px; /* Fixed width for larger images */
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+img {
+    width: 100%;
+    height: auto; /* Auto height to maintain aspect ratio */
+    display: block;
+}
+
+.description {
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.footer-links {
+    margin: 10px 0;
+}
+
+.footer-links a {
+    margin: 0 15px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.subscribe {
+    margin: 10px 0;
+}
+
+.subscribe input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 5px;
+}
+
+.subscribe button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #4e3b31;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.subscribe button:hover {
+    transform: scale(1.1);
+}
+
+.social-media {
+    margin: 10px 0;
+}
+
+.social-icon {
+    margin: 0 10px;
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #4e3b31;
+    cursor: pointer;
+    display: none; /* Hide initially */
+    transition: transform 0.3s;
+}
+
+.scroll-to-top:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .gallery-item {
+        width: 45%; /* Two images on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        width: 90%; /* One image on mobile */
+    }
+}
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Coffo Gallery</h1>
+    </header>
+
+    <div class="gallery">
+        <div class="slider">
+            <div class="slider-container">
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 1">
+                        <div class="description">Espresso</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 2">
+                        <div class="description">Latte</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 3">
+                        <div class="description">Cappuccino</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 4">
+                        <div class="description">Mocha</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider">
+            <div class="slider-container">
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 5">
+                        <div class="description">Filter Coffee</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 6">
+                        <div class="description">Affogato</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 7">
+                        <div class="description">Iced Coffee</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 8">
+                        <div class="description">Turkish Coffee</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider">
+            <div class="slider-container">
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 9">
+                        <div class="description">Cold Brew</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 10">
+                        <div class="description">Flat White</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 11">
+                        <div class="description">Irish Coffee</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pngegg (1).png" alt="Coffee 12">
+                        <div class="description">Nitro Coffee</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Menu</a>
+        </div>
+        <div class="subscribe">
+            <input type="email" placeholder="Subscribe to our newsletter">
+            <button>Subscribe</button>
+        </div>
+        <div class="social-media">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top">↑</button>
+
+    <script src="script.js">
+
+        // Scroll to Top functionality
+const scrollToTopButton = document.querySelector('.scroll-to-top');
+
+window.addEventListener('scroll', () => {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollToTopButton.style.display = "block";
+    } else {
+        scrollToTopButton.style.display = "none";
+    }
+});
+
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Slider functionality
+const sliders = document.querySelectorAll('.slider-container');
+
+sliders.forEach(slider => {
+    let currentIndex = 0;
+    const totalImages = slider.children[0].children.length;
+
+    const updateSlider = () => {
+        const offset = -currentIndex * 300; // Assuming each image item is 300px wide
+        slider.style.transform = `translateX(${offset}px)`;
+        currentIndex = (currentIndex + 1) % totalImages;
+    };
+
+    updateSlider(); // Initial update
+    setInterval(updateSlider, 2000); // Autoplay every 2 seconds
+
+    slider.addEventListener('mousedown', (e) => {
+        let startX = e.pageX;
+        let endX;
+
+        const mouseMoveHandler = (e) => {
+            endX = e.pageX;
+            const moveX = startX - endX;
+
+            if (moveX > 50) {
+                // Swiped left
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateSlider();
+                document.removeEventListener('mousemove', mouseMoveHandler);
+            } else if (moveX < -50) {
+                // Swiped right
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateSlider();
+                document.removeEventListener('mousemove', mouseMoveHandler);
+            }
+        };
+
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', () => {
+            document.removeEventListener('mousemove', mouseMoveHandler);
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

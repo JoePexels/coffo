@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Coffo</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #5D4037;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Meet the Team Section */
+        .meet-the-team {
+            margin-top: 60px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .meet-the-team h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .team-slider {
+            display: flex;
+            gap: 20px;
+            scroll-behavior: smooth;
+            padding: 20px;
+            overflow-x: hidden;
+            scroll-snap-type: x mandatory;
+            width: 100%;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 350px; /* Increased card size */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Image Container */
+        .team-card .image-container {
+            width: 100%;
+            height: 60%; /* 60% of the card height */
+            background-color: #6D4C41; /* Different background color for the image */
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure the image doesn't overflow */
+            margin-bottom: 15px;
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .team-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .team-card p {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .slider-controls {
+            margin-top: 20px;
+            display: flex; /* Flex display for buttons */
+            gap: 10px; /* Space between buttons */
+            justify-content: center; /* Center the buttons */
+        }
+
+        .slider-controls button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .slider-controls button.active {
+            background: rgba(255, 255, 255, 0.2); /* Highlight active button */
+        }
+
+        .slider-controls button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hide scrollbar for the team slider */
+        .team-slider {
+            overflow: hidden; /* Hide the scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .team-slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+
+        /* Ensure the third card is fully visible */
+        .container {
+            max-width: 1200px; /* Adjust based on your layout */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            width: 100%;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align the items */
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column; /* Align links vertically */
+            gap: 10px; /* Space between links */
+            text-align: left; /* Align text to the left */
+            align-items: flex-start; /* Left align links */
+            width: 100%; /* Full width for alignment */
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease, padding-left 0.3s ease;
+            padding-left: 10px; /* Add some space to animate */
+        }
+
+        .footer-links a:hover {
+            transform: translateX(5px); /* Move to the right on hover */
+        }
+
+        .footer-subscribe {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end; /* Align to the right */
+            width: 100%; /* Full width for proper alignment */
+        }
+
+        .footer-subscribe input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        .footer-subscribe button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #fff;
+            color: #5D4037;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .footer-subscribe button:hover {
+            background: #f0f0f0;
+        }
+
+        .footer-payments {
+            display: flex;
+            justify-content: center; /* Center the payment icons */
+            gap: 15px;
+        }
+
+        .footer-payments img {
+            width: 50px; /* Set a fixed width for payment method images */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center; /* Center the social icons */
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2); /* Scale up on hover */
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .team-card {
+                width: 100%; /* One card on mobile view */
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center; /* Keep items center-aligned */
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start; /* Align links to the left */
+            }
+
+            .footer-subscribe {
+                justify-content: flex-end; /* Ensure subscribe input also aligns on mobile */
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .team-card {
+                width: calc(50% - 20px); /* Two cards for tablet view */
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>About Coffo</h1>
+            <p>Discover the story behind your favorite coffee shop.</p>
+        </header>
+
+        <div class="cards">
+            <div class="card" data-tilt>
+                <h2>Our Story</h2>
+                <p>Founded in 2020, Coffo started as a small coffee cart in the heart of the city. Our passion for coffee and community has grown into a beloved local spot.</p>
+            </div>
+            <div class="card" data-tilt>
+                <h2>Our Mission</h2>
+                <p>We aim to provide the finest coffee experience, sourcing ethically grown beans and crafting each cup with care and precision.</p>
+            </div>
+        </div>
+
+        <!-- Meet the Team Section -->
+        <section class="meet-the-team">
+            <h2>Meet the Team</h2>
+            <div class="team-slider">
+                <div class="team-card">
+                    <div class="image-container">
+                        <img src="img/front-view-woman-working-as-barista.png" alt="Team Member 1">
+                    </div>
+                    <h3>John Doe</h3>
+                    <p>Head Barista</p>
+                </div>
+                <div class="team-card">
+                    <div class="image-container">
+                        <img src="img/processed-image.png" alt="Team Member 2">
+                    </div>
+                    <h3>Jane Smith</h3>
+                    <p>Barista</p>
+                </div>
+                <div class="team-card">
+                    <div class="image-container">
+                        <img src="img/processed-image (1).png" alt="Team Member 3">
+                    </div>
+                    <h3>Emily Johnson</h3>
+                    <p>Manager</p>
+                </div>
+                <div class="team-card">
+                    <div class="image-container">
+                        <img src="img/processed-image.png" alt="Team Member 2">
+                    </div>
+                    <h3>Jane Smith</h3>
+                    <p>Barista</p>
+                </div>
+                <div class="team-card">
+                    <div class="image-container">
+                        <img src="img/processed-image (1).png" alt="Team Member 3">
+                    </div>
+                    <h3>Emily Johnson</h3>
+                    <p>Manager</p>
+                </div>
+                <div class="team-card">
+                    <div class="image-container">
+                        <img src="img/front-view-woman-working-as-barista.png" alt="Team Member 4">
+                    </div>
+                    <h3>Michael Brown</h3>
+                    <p>Assistant Barista</p>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev">&#10094;</button>
+                <button class="next">&#10095;</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Gallery</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Menu</a>
+            </div>
+            <div class="footer-payments">
+                <img src="visa.png" alt="Visa">
+                <img src="mastercard.png" alt="Mastercard">
+                <img src="paypal.png" alt="Paypal">
+            </div>
+            <div class="footer-subscribe">
+                <input type="email" placeholder="Subscribe to our newsletter">
+                <button>Subscribe</button>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 Coffo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script>
+        // Tilt effect for cards
+        VanillaTilt.init(document.querySelectorAll(".card"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5,
+        });
+
+        // Team Slider Functionality
+        const slider = document.querySelector(".team-slider");
+        const prevButton = document.querySelector(".prev");
+        const nextButton = document.querySelector(".next");
+        const buttons = document.querySelectorAll(".slider-controls button");
+
+        let scrollAmount = 0;
+        let autoScrollInterval;
+
+        // Function to scroll to the next card
+        const scrollNext = () => {
+            const cardWidth = slider.querySelector(".team-card").offsetWidth + 20; // Card width + gap
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+            if (scrollAmount >= maxScroll) {
+                scrollAmount = 0; // Reset to the first card
+            } else {
+                scrollAmount += cardWidth;
+            }
+            slider.scrollTo({
+                left: scrollAmount,
+                behavior: "smooth",
+            });
+            updateButtonState(); // Update button states after scrolling
+        };
+
+        // Start automatic scrolling
+        const startAutoScroll = () => {
+            autoScrollInterval = setInterval(scrollNext, 5000); // Slowed down to 5 seconds for better readability
+        };
+
+        // Stop automatic scrolling on user interaction
+        const stopAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+        };
+
+        // Initialize automatic scrolling
+        startAutoScroll();
+
+        // Pause auto-scroll on slider hover
+        slider.addEventListener("mouseenter", stopAutoScroll);
+        slider.addEventListener("mouseleave", startAutoScroll);
+
+        // Manual navigation buttons
+        prevButton.addEventListener("click", () => {
+            stopAutoScroll();
+            const cardWidth = slider.querySelector(".team-card").offsetWidth + 20; // Card width + gap
+            scrollAmount = Math.max(scrollAmount - cardWidth, 0);
+            slider.scrollTo({
+                left: scrollAmount,
+                behavior: "smooth",
+            });
+            updateButtonState();
+            startAutoScroll();
+        });
+
+        nextButton.addEventListener("click", () => {
+            stopAutoScroll();
+            scrollNext();
+            startAutoScroll();
+        });
+
+        // Update button states
+        const updateButtonState = () => {
+            buttons.forEach(button => button.classList.remove('active')); // Reset all buttons
+            if (scrollAmount === 0) {
+                prevButton.classList.add('active'); // Highlight prev button if at start
+            } else {
+                nextButton.classList.add('active'); // Highlight next button otherwise
+            }
+        };
+
+        // Draggable slider functionality
+        let isDragging = false;
+        let startX, scrollLeft;
+
+        slider.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            stopAutoScroll();
+        });
+
+        slider.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Adjust drag speed
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        slider.addEventListener("mouseup", () => {
+            isDragging = false;
+            startAutoScroll();
+        });
+
+        slider.addEventListener("mouseleave", () => {
+            isDragging = false;
+            startAutoScroll();
+        });
+    </script>
+</body>
+
+</html>
