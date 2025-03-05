@@ -194,7 +194,7 @@
             background: rgba(0, 0, 0, 0.2);
             width: 100%;
             padding: 20px 0;
-            margin-top: auto;
+            margin-top: 20px;
         }
 
         .footer-content {
@@ -208,6 +208,7 @@
         }
 
         .footer-links {
+
             display: flex;
             flex-direction: column; /* Align links vertically */
             gap: 10px; /* Space between links */
@@ -243,15 +244,16 @@
 
         .footer-subscribe button {
             padding: 10px 20px;
-            border: none;
+            border: #fff 1px solid;
             border-radius: 5px;
-            background: #fff;
-            color: #5D4037;
+            color: #fff;
+            background-color: #5D4037;
             cursor: pointer;
             transition: background 0.3s ease;
         }
 
         .footer-subscribe button:hover {
+            color: #5D4037;
             background: #f0f0f0;
         }
 
@@ -262,7 +264,7 @@
         }
 
         .footer-payments img {
-            width: 50px; /* Set a fixed width for payment method images */
+            width: 150px; /* Set a fixed width for payment method images */
             height: auto; /* Maintain aspect ratio */
         }
 
@@ -401,9 +403,7 @@
                 <a href="#">Menu</a>
             </div>
             <div class="footer-payments">
-                <img src="visa.png" alt="Visa">
-                <img src="mastercard.png" alt="Mastercard">
-                <img src="paypal.png" alt="Paypal">
+                <img src="img/visa.png" alt="">
             </div>
             <div class="footer-subscribe">
                 <input type="email" placeholder="Subscribe to our newsletter">
