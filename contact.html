@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Coffee Brand</title>
+  <style>
+
+    /* General Styles */
+    :root {
+  --primary-color: #ff8b00;
+  --text-color: #ffffff;
+  --background-color: #1a1a1a;
+  --card-bg: #252525;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+span{
+  color: var(--primary-color);
+}
+
+
+  a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ button{
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: #ff9f2a;
+  transform: translateY(-2px);
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(26, 26, 26, 0.95);
+  padding: 15px 0;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  position: relative;
+  padding: 5px 0;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-icons i {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-icons i:hover {
+  color: var(--primary-color);
+}
+
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+#cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Search Input */
+.search-input {
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  width: 200px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(255, 139, 0, 0.5);
+}
+
+/* Search Toggle Button */
+#search-toggle {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#search-toggle:hover {
+  color: var(--primary-color);
+}
+
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide nav links by default on mobile */
+    flex-direction: column; /* Stack links vertically */
+    position: absolute;
+    top: 70px; /* Adjust based on navbar height */
+    left: 0;
+    width: 100%;
+    background-color: rgba(26, 26, 26, 0.95); /* Match navbar background */
+    padding: 20px 0;
+    gap: 15px; /* Space between links */
+    z-index: 1000; /* Ensure it appears above other content */
+  }
+
+  .nav-links a {
+    padding: 10px 20px; /* Add padding for better touch targets */
+    text-align: center; /* Center-align the text */
+  }
+
+  .nav-links.active {
+    display: flex; /* Show nav links when active */
+  }
+
+  .nav-icons {
+    display: none; /* Hide icons on mobile view */
+  }
+
+  .mobile-menu-btn {
+    display: block; /* Show mobile menu button */
+  }
+}
+
+/* Hero Section */
+.hero {
+  background: url('img/petr-sevcovic-qE1jxYXiwOA-unsplash.jpg') no-repeat center center/cover;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--secondary-color);
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+
+/* Global Contact Section */
+.global-contact {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.global-contact h2 {
+  margin-bottom: 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+.contact-card h3 {
+  color: var(--secondary-color);
+}
+
+.contact-card p {
+  margin: 10px 0;
+}
+
+
+
+/* Contact Form Section */
+.contact-form {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.contact-form h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+.glass-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  max-width: 100%; /* Full width */
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .glass-container {
+    padding: 60px; /* More padding for larger screens */
+  }
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  box-shadow: 0 0 8px rgba(192, 133, 82, 0.5);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Checkbox Group Styling */
+.checkbox-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.checkbox-group h3 {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin: 8px 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: var(--secondary-color);
+}
+
+/* Textarea Styling */
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+
+
+/* Social Media Icons */
+.social-media {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50%; /* Perfectly circular */
+  width: 50px; /* Fixed width */
+  height: 50px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none; /* Remove underline */
+  border: none; /* Remove any default borders */
+}
+
+.social-btn:hover {
+  background: var(--secondary-color);
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Google Maps */
+.map-section {
+  padding: 40px 20px;
+}
+
+
+
+/* Newsletter Section */
+.newsletter {
+  position: relative;
+  background-image: url('https://cdn.shopify.com/s/files/1/0070/7032/articles/email-newsletter-design_8532ad8f-4a04-4c5e-8753-5450240a3f0c.png?v=1729112482'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* This creates the parallax effect */
+  padding: 100px 20px;
+  text-align: center;
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+.newsletter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Overlay to improve text readability */
+  z-index: 1;
+}
+
+.newsletter-container {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+}
+
+
+.newsletter h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+.newsletter p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 30px;
+}
+
+.newsletter .input-group {
+  display: flex;
+  justify-content: center; /* Center the input and button */
+  align-items: center; /* Align items vertically */
+  gap: 10px; /* Space between input and button */
+}
+
+.newsletter input {
+  width: 300px; /* Fixed width for email input */
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.newsletter input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  box-shadow: 0 0 8px rgba(192, 133, 82, 0.5);
+}
+
+.newsletter input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.newsletter button {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.newsletter button:hover {
+  background: var(--brown);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(192, 133, 82, 0.3);
+}
+//* Footer */
+.footer {
+  background-color: var(--background-color);
+  padding: 80px 0 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+.footer-logo p {
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-links h3,
+.footer-social h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background-color: var(--card-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.social-icons a:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo" style="color: var(--primary-color);">
+        <a href="preview.html" style="text-decoration: none;"><p style="font-size: 25px; font-weight: 700;">Coffo</p></a>
+      </div>
+      <div class="nav-links">
+        <a href="preview.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="preview.html#menu">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search..." class="search-input" style="display: none;">
+          <a href="preview.html#search" id="search-toggle"><i class="fas fa-search"></i></a>
+        </div>
+        <a href="carts.html" class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-count">0</span>
+        </a>
+        <button><a href="preview.html#menu" style="text-decoration: none;">Order Now</a></button>
+      </div>
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Let’s Brew a <span> Conversation!</span></h1>
+      <p>We believe coffee <span> connects</span> people worldwide. Whether you have inquiries about our <span> coffee</span> experiences, want to collaborate, or just want to share your coffee story, we’d love to hear from you!</p>
+    </div>
+  </section>
+
+  <!-- Global Contact Information -->
+  <section class="global-contact">
+    <h2>Global <span>Contact</span> Information</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3><span>Headquarters</span></h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Coffee Lane, Brew City, BC 12345</p>
+        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+        <p><i class="fas fa-envelope"></i> info@coffeebrand.com</p>
+      </div>
+      <div class="contact-card">
+        <h3><span>Europe Office</span></h3>
+        <p><i class="fas fa-map-marker-alt"></i> 456 Espresso Street, Paris, France</p>
+        <p><i class="fas fa-phone"></i> +33 123 456 789</p>
+        <p><i class="fas fa-envelope"></i> europe@coffeebrand.com</p>
+      </div>
+      <div class="contact-card">
+        <h3><span>Asia Office</span></h3>
+        <p><i class="fas fa-map-marker-alt"></i> 789 Latte Road, Tokyo, Japan</p>
+        <p><i class="fas fa-phone"></i> +81 123 456 789</p>
+        <p><i class="fas fa-envelope"></i> asia@coffeebrand.com</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="contact-form">
+    <div class="glass-container">
+      <h2>Join Our <span>Coffee </span> Community</h2>
+      <form id="communityForm">
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email Address" required>
+        </div>
+       
+        <div class="checkbox-group">
+          <h3>Preferred <span>Coffee</span> Experience</h3>
+          <label><input type="checkbox" name="experience" value="tasting"> Tasting Events</label>
+          <label><input type="checkbox" name="experience" value="workshops"> Virtual Coffee Workshops</label>
+          <label><input type="checkbox" name="experience" value="barista"> Barista Training</label>
+        </div>
+        <div class="form-group">
+          <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Google Maps -->
+  <section class="map-section">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2fed4f5b6e1!2sCoffee%20Shop!5e0!3m2!1sen!2sus!4v1633039290000!5m2!1sen!2sus" 
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <!-- Social Media Links -->
+  <section class="social-media">
+    <h2>Join Our <span>Global Coffee</span> Community</h2>
+    <div class="social-buttons">
+      <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+      <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </section>
+
+<!-- Newsletter Section -->
+<section class="newsletter">
+    <div class="newsletter-container">
+      <h2>Subscribe to Our <span>Newsletter</span></h2>
+      <p>Get the latest coffee trends, exclusive offers, and updates delivered straight to your inbox.</p>
+      <form id="newsletterForm">
+        <div class="input-group">
+          <input type="email" placeholder="Your Email" required>
+          <button type="submit" style="background-color: var(--primary-color); color: var(--text-color);">Subscribe Now</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <   <!-- Footer -->
+  <footer class="footer">
+   <div class="container">
+       <div class="footer-content">
+           <div class="footer-logo">
+               <p style="font-size: 25px;">Coffo</p>
+               <p>The best coffee shop in town</p>
+           </div>
+           <div class="footer-links">
+               <h3>Quick Links</h3>
+               <a href="preview.html">Home</a>
+               <a href="about.html">About</a>
+               <a href="preview.html#menu">Menu</a>
+               <a href="contact.html">Contact</a>
+           </div>
+           <div class="footer-social">
+               <h3>Follow Us</h3>
+               <div class="social-icons">
+                   <a href="#"><i class="fab fa-facebook"></i></a>
+                   <a href="#"><i class="fab fa-instagram"></i></a>
+                   <a href="#"><i class="fab fa-twitter"></i></a>
+               </div>
+           </div>
+       </div>
+       <div class="footer-bottom">
+           <p>&copy; 2025 Coffo. All rights reserved.</p>
+       </div>
+   </div>
+</footer>
+
+  <script>
+
+// Smooth Scrolling Animation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Form Submission
+document.getElementById('communityForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  alert('Thank you for joining our coffee community!');
+  this.reset();
+});
+
+document.getElementById('newsletterForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  alert('Thank you for subscribing to the Brew Club!');
+  this.reset();
+});
+
+  </script>
+</body>
+</html>

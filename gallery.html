@@ -1,329 +1,831 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Coffo</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Gallery</title>
+  <style>
+
+    /* General Styles */
+    :root {
+  --primary-color: #ff8b00;
+  --text-color: #ffffff;
+  --background-color: #1a1a1a;
+  --card-bg: #252525;
+  --transition: all 0.3s ease;
+}
 
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #4e3b31; /* Chocolate brown */
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--background-color),"opacity:20%";
+  color: var(--text-color);
+
 }
 
-header {
-    text-align: center;
-    padding: 20px;
+.glass-effect {
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(10px);
+border-radius: 10px;
+border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-h1 {
-    margin: 0;
-    font-size: 3rem;
+span{
+  color: var(--primary-color);
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Background Elements */
+.bg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.9); /* Dark overlay */
+  z-index: 1;
+}
+
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1561&q=80"); /* Add your background image URL */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2; /* Adjust opacity as needed */
+  z-index: 0;
+}
+
+button{
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: #ff9f2a;
+  transform: translateY(-2px);
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(26, 26, 26, 0.95);
+  padding: 15px 0;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  position: relative;
+  padding: 5px 0;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-icons i {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-icons i:hover {
+  color: var(--primary-color);
+}
+
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+#cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Search Input */
+.search-input {
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  width: 200px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(255, 139, 0, 0.5);
+}
+
+/* Search Toggle Button */
+#search-toggle {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#search-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* moblie responsiveness */
+@media (max-width: 768px) {
+  .nav-links {
+    align-items: center;
+    display: none; /* Hide nav links by default on mobile */
+    flex-direction: column; /* Stack links vertically */
+    position: fixed; /* Fix the position to the side */
+    top: 70px; /* Adjust based on navbar height */
+    right: 0; /* Align to the right side */
+    width: 300px; /* Set the width to 300px */
+    height: 100vh; /* Full height of the viewport */
+    background-color: rgba(26, 26, 26, 0.95); /* Match navbar background */
+    padding: 20px 0;
+    gap: 15px; /* Space between links */
+    z-index: 1000; /* Ensure it appears above other content */
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+    transition: transform 0.3s ease; /* Smooth slide-in animation */
+    transform: translateX(100%); /* Hide the panel off-screen by default */
+  }
+
+  .nav-links.active {
+    display: flex; /* Show nav links when active */
+    transform: translateX(0); /* Slide the panel into view */
+  }
+
+  .nav-icons {
+    display: none; /* Hide icons on mobile view */
+  }
+
+  .mobile-menu-btn {
+    display: block; /* Show mobile menu button */
+  }
+}
+
+
+/* Hero Section */
+.hero {
+  background: url('img/vecteezy_ai-generated-design-of-a-modern-cafe-in-gray-tones_37337629.jpeg') no-repeat center center/cover;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--secondary-color);
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* Gallery Section */
 .gallery {
-    padding: 20px;
-    flex: 1; /* Allow the gallery to expand and take available space */
+  padding: 60px 20px;
+  text-align: center;
 }
 
-.slider {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
+.gallery h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
 }
 
-.slider-container {
-    display: flex;
-    transition: transform 0.5s ease;
+.filter-buttons {
+  margin-bottom: 20px;
 }
 
-.gallery-row {
-    display: flex; /* Makes children of gallery-row flex items */
+.filter-buttons button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 5px;
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
 .gallery-item {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    margin: 10px;
-    text-align: center;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 300px; /* Fixed width for larger images */
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
 }
 
-.gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-img {
-    width: 100%;
-    height: auto; /* Auto height to maintain aspect ratio */
-    display: block;
+.gallery-item:hover img {
+  transform: scale(1.1);
 }
 
-.description {
-    padding: 10px;
-    font-size: 1.2rem;
+/* Customer Uploads Section */
+.customer-uploads {
+  position: relative;
+  padding: 100px 20px;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+  background-attachment: fixed; /* Parallax effect */
+  overflow: hidden;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+.parallax-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(94, 48, 35, 0.7); /* Overlay color */
+}
+
+.customer-uploads-content {
+  position: relative;
+  z-index: 1;
+}
+
+.customer-uploads h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+#uploadForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#uploadForm input,
+#uploadForm button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+#uploadForm button {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#uploadForm button:hover {
+  background: var(--brown);
+}
+
+/* Social Media Section */
+.social-media {
+    background-color: var(--card-bg);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.social-media h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-btn:hover {
+  background: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--background-color);
+  padding: 80px 0 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+.footer-logo p {
+  margin-top: 20px;
+  opacity: 0.8;
 }
 
 .footer-links {
-    margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.footer-links a {
-    margin: 0 15px;
-    color: #ffffff;
-    text-decoration: none;
+.footer-links h3,
+.footer-social h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
 }
 
-.subscribe {
-    margin: 10px 0;
+.social-icons {
+  display: flex;
+  gap: 20px;
 }
 
-.subscribe input {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    margin-right: 5px;
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background-color: var(--card-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
 }
 
-.subscribe button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #4e3b31;
-    cursor: pointer;
-    transition: transform 0.3s;
+.social-icons a:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-5px);
 }
 
-.subscribe button:hover {
-    transform: scale(1.1);
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.social-media {
-    margin: 10px 0;
+/* Lightbox Modal */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
 }
 
-.social-icon {
-    margin: 0 10px;
-    color: #ffffff;
-    font-size: 1.5rem;
-    transition: transform 0.3s;
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
 }
 
-.social-icon:hover {
-    transform: scale(1.2);
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: var(--text-color);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #4e3b31;
-    cursor: pointer;
-    display: none; /* Hide initially */
-    transition: transform 0.3s;
+.close:hover {
+  color: var(--secondary-color);
 }
 
-.scroll-to-top:hover {
-    transform: scale(1.1);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .gallery-item {
-        width: 45%; /* Two images on tablets */
-    }
-}
-
-@media (max-width: 480px) {
-    .gallery-item {
-        width: 90%; /* One image on mobile */
-    }
-}
-
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Coffo Gallery</h1>
-    </header>
-
-    <div class="gallery">
-        <div class="slider">
-            <div class="slider-container">
-                <div class="gallery-row">
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 1">
-                        <div class="description">Espresso</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 2">
-                        <div class="description">Latte</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 3">
-                        <div class="description">Cappuccino</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 4">
-                        <div class="description">Mocha</div>
-                    </div>
-                </div>
-            </div>
+   <!-- Navigation -->
+   <nav class="navbar">
+    <div class="container">
+        <div class="logo" style="color: var(--primary-color);">
+            <a href="preview.html" style="text-decoration: none;"><p style="font-size: 25px; font-weight: 700;">Coffo</p></a>
+          </div>
+      <div class="nav-links">
+        <a href="preview.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="preview.html#menu">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search..." class="search-input" style="display: none;">
+          <a href="preview.html" id="search-toggle"><i class="fas fa-search"></i></a>
         </div>
+        <a href="carts.html" class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-count">0</span>
+        </a>
+        <button><a href="preview.html#menu" style="text-decoration: none;">Order Now</a></button>
+      </div>
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
 
-        <div class="slider">
-            <div class="slider-container">
-                <div class="gallery-row">
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 5">
-                        <div class="description">Filter Coffee</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 6">
-                        <div class="description">Affogato</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 7">
-                        <div class="description">Iced Coffee</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 8">
-                        <div class="description">Turkish Coffee</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>A <span>Visual</span> Journey Through <span>Coffo</span> </h1>
+      <p>Explore the art of coffee <span>brewing</span>, from beans to cup. Get inspired by our <span> coffee</span> moments from around the world.</p>
+    </div>
+  </section>
 
-        <div class="slider">
-            <div class="slider-container">
-                <div class="gallery-row">
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 9">
-                        <div class="description">Cold Brew</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 10">
-                        <div class="description">Flat White</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 11">
-                        <div class="description">Irish Coffee</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="pngegg (1).png" alt="Coffee 12">
-                        <div class="description">Nitro Coffee</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Gallery Section -->
+<section class="gallery">
+    <h2>Our <span>Coffee</span> Gallery</h2>
+    <div class="filter-buttons">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="espresso">Espresso</button>
+      <button data-filter="latte-art">Latte Art</button>
+      <button data-filter="brewing">Brewing</button>
+      <button data-filter="coffee-shops">Coffee Shops</button>
+    </div>
+    <div class="gallery-grid">
+      <!-- Coffee Beans & Brewing Process -->
+      <div class="gallery-item espresso brewing">
+        <img src="https://plus.unsplash.com/premium_photo-1681826877659-c8d5a0e76592?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZHJpbmtpbmclMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D" alt="Coffee Beans">
+      </div>
+      <div class="gallery-item brewing">
+        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D" alt="Espresso Shot">
+      </div>
+      <div class="gallery-item brewing">
+        <img src="https://images.unsplash.com/photo-1556740767-414a9c4860c1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MTV8fGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D" alt="Drip Coffee">
+      </div>
+      <div class="gallery-item brewing">
+        <img src="https://images.unsplash.com/photo-1582298538104-fe2e74c27f59?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHJpbmtpbmclMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D" alt="Steaming Milk">
+      </div>
+      <div class="gallery-item brewing">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pouring Coffee">
+      </div>
+  
+      <!-- Baristas at Work -->
+      <div class="gallery-item latte-art">
+        <img src="https://images.unsplash.com/photo-1597018990612-969bb248a215?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmFyaXN0YXxlbnwwfHwwfHx8MA%3D%3D" alt="Latte Art">
+      </div>
+      <div class="gallery-item latte-art">
+        <img src="https://images.unsplash.com/photo-1599000117646-493e27e0e609?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJhcmlzdGF8ZW58MHx8MHx8fDA%3D" alt="Latte Art Design">
+      </div>
+  
+      <!-- Coffee Lovers Enjoying a Cup -->
+      <div class="gallery-item coffee-shops">
+        <img src="https://images.unsplash.com/photo-1545418314-7ce0b9b53901?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvZmZlZSUyMHNob3BzfGVufDB8fDB8fHww" alt="Coffee Lovers">
+      </div>
+      <div class="gallery-item coffee-shops">
+        <img src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvZmZlZSUyMHNob3BzfGVufDB8fDB8fHww" alt="Enjoying Coffee">
+      </div>
+      <div class="gallery-item coffee-shops">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlJTIwc2hvcHN8ZW58MHx8MHx8fDA%3D" alt="Coffee Break">
+      </div>
+  
+      <!-- International Coffee Cultures -->
+      <div class="gallery-item espresso">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Italian Espresso">
+      </div>
+      <div class="gallery-item brewing">
+        <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="French Press">
+      </div>
+      <div class="gallery-item latte-art">
+        <img src="https://images.unsplash.com/photo-1608585269273-5cacd36870f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZHJpbmtpbmclMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D" alt="Turkish Coffee">
+      </div>
+  
+      <!-- More Coffee Shops -->
+      <div class="gallery-item coffee-shops">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee Shop Interior">
+      </div>
+      <div class="gallery-item coffee-shops">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee Shop Ambiance">
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Uploads Section -->
+ <!-- Customer Uploads Section -->
+<section class="customer-uploads">
+    <div class="parallax-overlay"></div>
+    <div class="customer-uploads-content">
+      <h2>Share Your <span>Coffee</span> Moments</h2>
+      <form id="uploadForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <input type="file" id="image" accept="image/*" required>
+        <button type="submit" style="background-color: var(--primary-color); color: var(--text-color);">Upload</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section class="social-media">
+    <h2>Follow Us on <span> Social Media</span></h2>
+    <div class="social-buttons">
+      <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-btn"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <div class="instagram-feed">
+      <!-- Instagram feed will be dynamically added here -->
+    </div>
+  </section>
+
+      <!-- Background Elements -->
+      <div class="bg-wrapper">
+        <div class="bg-overlay"></div>
+        <div class="bg-image"></div>
     </div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-            <a href="#">Menu</a>
+
+   <!-- Footer -->
+   <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <p style="font-size: 25px;">Coffo</p>
+                <p>The best coffee shop in town</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="preview.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="preview.html#menu">Menu</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="subscribe">
-            <input type="email" placeholder="Subscribe to our newsletter">
-            <button>Subscribe</button>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Coffo. All rights reserved.</p>
         </div>
-        <div class="social-media">
-            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-        </div>
-    </footer>
+    </div>
+</footer>
 
-    <button class="scroll-to-top">↑</button>
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+  </div>
 
-    <script src="script.js">
+  <script>
 
-        // Scroll to Top functionality
-const scrollToTopButton = document.querySelector('.scroll-to-top');
+document.addEventListener("DOMContentLoaded", () => {
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+  const navLinks = document.querySelector(".nav-links");
+  const navIcons = document.querySelector(".nav-icons");
 
-window.addEventListener('scroll', () => {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        scrollToTopButton.style.display = "block";
+  mobileMenuBtn.addEventListener("click", () => {
+    // Toggle the visibility of nav-links
+    navLinks.classList.toggle("active");
+
+    // Toggle the icon between bars and times
+    const icon = mobileMenuBtn.querySelector("i");
+    if (icon.classList.contains("fa-bars")) {
+      icon.classList.replace("fa-bars", "fa-times");
     } else {
-        scrollToTopButton.style.display = "none";
+      icon.classList.replace("fa-times", "fa-bars");
     }
-});
+  });
 
-scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
+  // Smooth Scrolling
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
 
-// Slider functionality
-const sliders = document.querySelectorAll('.slider-container');
-
-sliders.forEach(slider => {
-    let currentIndex = 0;
-    const totalImages = slider.children[0].children.length;
-
-    const updateSlider = () => {
-        const offset = -currentIndex * 300; // Assuming each image item is 300px wide
-        slider.style.transform = `translateX(${offset}px)`;
-        currentIndex = (currentIndex + 1) % totalImages;
-    };
-
-    updateSlider(); // Initial update
-    setInterval(updateSlider, 2000); // Autoplay every 2 seconds
-
-    slider.addEventListener('mousedown', (e) => {
-        let startX = e.pageX;
-        let endX;
-
-        const mouseMoveHandler = (e) => {
-            endX = e.pageX;
-            const moveX = startX - endX;
-
-            if (moveX > 50) {
-                // Swiped left
-                currentIndex = (currentIndex + 1) % totalImages;
-                updateSlider();
-                document.removeEventListener('mousemove', mouseMoveHandler);
-            } else if (moveX < -50) {
-                // Swiped right
-                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-                updateSlider();
-                document.removeEventListener('mousemove', mouseMoveHandler);
-            }
-        };
-
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', () => {
-            document.removeEventListener('mousemove', mouseMoveHandler);
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: "smooth",
         });
+
+        // Close mobile menu if open
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove("active");
+          mobileMenuBtn.querySelector("i").classList.replace("fa-times", "fa-bars");
+        }
+      }
     });
+  });
+
+  // Navbar Background on Scroll
+  const navbar = document.querySelector(".navbar");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.style.backgroundColor = "rgba(26, 26, 26, 0.95)";
+      navbar.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.3)";
+    } else {
+      navbar.style.backgroundColor = "transparent";
+      navbar.style.boxShadow = "none";
+    }
+  });
 });
 
-    </script>
+// Gallery Filtering
+const filterButtons = document.querySelectorAll('.filter-buttons button');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const filter = button.getAttribute('data-filter');
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    galleryItems.forEach(item => {
+      if (filter === 'all' || item.classList.contains(filter)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Lightbox Feature
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.close');
+
+document.querySelectorAll('.gallery-item img').forEach(image => {
+  image.addEventListener('click', () => {
+    lightbox.style.display = 'block';
+    lightboxImg.src = image.src;
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target !== lightboxImg) {
+    lightbox.style.display = 'none';
+  }
+});
+
+
+// Parallax Effect
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  document.querySelector('.hero').style.backgroundPositionY = `${scrollY * 0.5}px`;
+});
+
+// Toggle Navigation Menu
+const menuIcon = document.getElementById('menuIcon');
+const navLinks = document.getElementById('navLinks');
+
+menuIcon.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+  </script>
 </body>
 </html>
