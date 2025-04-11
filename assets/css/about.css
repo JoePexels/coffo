@@ -1,0 +1,640 @@
+/* General Styles */
+:root {
+--primary-color: #ff8b00;
+--text-color: #ffffff;
+--background-color: #1a1a1a;
+--card-bg: #252525;
+--transition: all 0.3s ease;
+--second-font: "Pacifico", cursive;
+}
+
+    body {
+font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 0;
+background: var(--background-color),"opacity:20%";
+color: var(--text-color);
+
+}
+
+.glass-effect {
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(10px);
+border-radius: 10px;
+border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+span{
+color: var(--primary-color);
+font-family: var(--second-font);
+font-weight: 900;
+}
+
+a {
+text-decoration: none;
+color: inherit;
+}
+
+button{
+background-color: var(--primary-color);
+color: var(--text-color);
+border: none;
+padding: 12px 30px;
+border-radius: 30px;
+font-weight: 600;
+cursor: pointer;
+transition: var(--transition);
+}
+
+button:hover {
+background-color: #ff9f2a;
+transform: translateY(-2px);
+}
+
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+background-color: rgba(26, 26, 26, 0.95);
+padding: 15px 0;
+}
+
+.navbar .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.nav-links {
+display: flex;
+gap: 30px;
+}
+
+.nav-links a {
+position: relative;
+padding: 5px 0;
+font-family: var(--second-font);
+}
+
+.nav-links a::after {
+content: "";
+position: absolute;
+bottom: -2px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: var(--primary-color);
+transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+width: 100%;
+}
+
+.nav-icons {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.nav-icons i {
+font-size: 1.2rem;
+cursor: pointer;
+transition: var(--transition);
+}
+
+.nav-icons i:hover {
+color: var(--primary-color);
+}
+
+.cart-icon {
+position: relative;
+display: inline-block;
+}
+
+#cart-count {
+position: absolute;
+top: -10px;
+right: -10px;
+background-color: var(--primary-color);
+color: var(--text-color);
+font-size: 0.8rem;
+padding: 2px 6px;
+border-radius: 50%;
+font-weight: bold;
+}
+
+.mobile-menu-btn {
+display: none;
+cursor: pointer;
+font-size: 1.5rem;
+}
+
+/* Search Container */
+.search-container {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+/* Search Input */
+.search-input {
+padding: 8px 15px;
+border-radius: 20px;
+border: 1px solid rgba(255, 255, 255, 0.2);
+background-color: rgba(0, 0, 0, 0.2);
+color: var(--text-color);
+font-size: 0.9rem;
+transition: all 0.3s ease;
+width: 200px;
+}
+
+.search-input:focus {
+outline: none;
+border-color: var(--primary-color);
+box-shadow: 0 0 5px rgba(255, 139, 0, 0.5);
+}
+
+/* Search Toggle Button */
+#search-toggle {
+font-size: 1.2rem;
+color: var(--text-color);
+cursor: pointer;
+transition: var(--transition);
+}
+
+#search-toggle:hover {
+color: var(--primary-color);
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+.navbar{
+height: 70px;
+}
+
+.nav-links {
+display: none; /* Hide nav links by default on mobile */
+flex-direction: column; /* Stack links vertically */
+position: absolute;
+top: 90px; /* Adjust based on navbar height */
+left: 0;
+width: 100%;
+background-color: rgba(26, 26, 26, 0.95); /* Match navbar background */
+padding: 20px 0;
+gap: 15px; /* Space between links */
+z-index: 1000; /* Ensure it appears above other content */
+}
+
+.nav-links a {
+padding: 10px 20px; /* Add padding for better touch targets */
+text-align: center; /* Center-align the text */
+}
+
+.nav-links.active {
+display: flex; /* Show nav links when active */
+}
+
+.nav-icons {
+display: none; /* Hide icons on mobile view */
+}
+
+.mobile-menu-btn {
+display: block; /* Show mobile menu button */
+}
+}
+
+
+
+.container1 {
+    text-align: center;
+    padding: 110px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: 80px;
+
+}
+
+.container1 h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container1 p {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+/* Parallax Section Styles */
+.parallax-section {
+    position: relative;
+    height: 500px; /* Adjust the height as needed */
+    background-image: url('../img/vecteezy_ai-generated-design-of-a-modern-cafe-in-gray-tones_37337629.jpeg'); /* Replace with your image */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-color);
+    overflow: hidden;
+    width: 100%; /* Ensure it spans the full width */
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+}
+
+.parallax-content {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 1500px; /* Optional: Limit the content width */
+    margin: 0 auto; /* Center the content */
+}
+
+.parallax-content h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.parallax-content p {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+.parallax-section {
+    top: 100px;
+    margin-bottom: 85px;
+    height: 300px; /* Smaller height for mobile */
+    background-attachment: scroll; /* Disable fixed background on mobile */
+}
+
+.parallax-content h2 {
+    font-size: 2.5rem; /* Smaller font size for mobile */
+}
+
+.parallax-content p {
+    font-size: 1rem; /* Smaller font size for mobile */
+}
+}
+
+@media (max-width: 400px) {
+.parallax-section{
+    top: 100px;
+    margin-bottom: 85px;
+}
+}
+/* cards */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Meet the Team Section */
+.meet-the-team {
+    margin-top: -150px;
+    width: 1230px;
+    overflow: hidden;
+    position: relative;
+}
+
+.meet-the-team h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.team-slider {
+    display: flex;
+    gap: 20px;
+    scroll-behavior: smooth;
+    padding: 20px;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+}
+
+.team-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    width: 350px; /* Increased card size */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Image Container */
+.team-card .image-container {
+    width: 100%;
+    height: 60%; /* 60% of the card height */
+    background-color: #6D4C41; /* Different background color for the image */
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    margin-bottom: 15px;
+}
+
+.team-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.team-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.team-card p {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.slider-controls {
+    margin-top: 20px;
+    display: flex; /* Flex display for buttons */
+    gap: 10px; /* Space between buttons */
+    justify-content: center; /* Center the buttons */
+}
+
+.slider-controls button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.slider-controls button.active {
+    background: rgba(255, 255, 255, 0.2); /* Highlight active button */
+}
+
+.slider-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.slider-controls button:disabled {
+    opacity: 0.5; /* Make the button look disabled */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+    }
+
+/* Hide scrollbar for the team slider */
+.team-slider {
+    overflow: hidden; /* Hide the scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.team-slider::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+
+/* Ensure the third card is fully visible */
+
+
+    /* Footer */
+    .footer {
+    background-color: var(--background-color);
+    padding: 80px 0 20px;
+    }
+
+    .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px;
+    margin-bottom: 50px;
+    }
+
+    .footer-logo p {
+    margin-top: 20px;
+    opacity: 0.8;
+    }
+
+    .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    }
+
+    .footer-links h3,
+    .footer-social h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    }
+
+    .footer-links a:hover{
+       padding-left: .5rem;
+       color: var(--primary-color);
+    }
+
+    .social-icons {
+    display: flex;
+    gap: 20px;
+    }
+
+    .social-icons a {
+    width: 40px;
+    height: 40px;
+    background-color: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Background Elements */
+.bg-wrapper {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+}
+
+.bg-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(26, 26, 26, 0.9); /* Dark overlay */
+z-index: 1;
+}
+
+.bg-image {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: url("../img/pngtree-coffee-beans-leaves-white-background-picture-image_2385266.jpg"); /* Add your background image URL */
+background-size: cover;
+background-position: center;
+opacity: 0.2; /* Adjust opacity as needed */
+z-index: 0;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-card {
+        width: 100%; /* One card on mobile view */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center; /* Keep items center-aligned */
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: flex-start; /* Align links to the left */
+    }
+
+    .footer-subscribe {
+        justify-content: flex-end; /* Ensure subscribe input also aligns on mobile */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .team-card {
+        width: calc(50% - 20px); /* Two cards for tablet view */
+    }
+}
+
+/* Hide horizontal overflow */
+body {
+overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+/* Additional Mobile Styles */
+@media (max-width: 768px) {
+.container1 {
+padding: 20px; /* Reduce padding to avoid overflow */
+margin-left: 0; 
+margin-right: 0; 
+text-align: center; 
+width: 100%; /* Ensure it takes full width */
+box-sizing: border-box; /* Include padding and border in height and width calculations */
+}
+
+.cards {
+display: flex;
+flex-direction: column; /* Stack cards vertically */
+align-items: center; /* Center align cards */
+padding: 0; /* Remove extra padding */
+width: 100%; /* Ensure cards do not exceed container width */
+overflow: hidden; /* Hide overflow */
+}
+
+.card {
+width: 90%; /* Set card width to 90% of the container */
+max-width: 350px; /* Cap the width of the card to avoid overflow */
+margin-bottom: 20px; /* Add space between cards */
+box-sizing: border-box; /* Ensure padding and border are included */
+}
+
+/* Meet the Team Section */
+.meet-the-team {
+margin-top: 40px; /* Reduce top margin */
+width: 100%; /* Ensure full width */
+overflow: hidden; /* Ensure no overflow */
+}
+
+.team-slider {
+display: flex; /* Continue using flex display */
+flex-direction: row; /* Ensure row direction if needed */
+flex-wrap: wrap; /* Allow wrapping of cards */
+justify-content: center; /* Center on screen */
+overflow-x: hidden; /* Hide horizontal scrollbar */
+padding: 10px; /* Adjust padding around cards */
+width: 100%; /* Ensure it fits within parent's width */
+box-sizing: border-box; /* Include padding/borders in width calculations */
+}
+
+.team-card {
+width: calc(100% - 20px); /* Width of team cards */
+max-width: 300px; /* Cap the width of team cards */
+margin: 10px; /* Add margin for spacing */
+flex: 0 0 auto; /* Keep flex child behavior */
+box-sizing: border-box; /* Ensure padding and borders are counted */
+}
+
+.slider-controls {
+display: none;
+}
+
+
+}
